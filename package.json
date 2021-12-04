@@ -1,0 +1,33 @@
+{
+  "name": "react-native-sample-monorepo",
+  "description": "Sample react native monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap --use-workspaces",
+    "build": "lerna run build",
+    "start:native": "concurrently -n native,store \"yarn workspace sample-native start\" \"yarn workspace sample-store start\""
+  },
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "lerna": "^4.0.0",
+    "lerna-wizard": "^1.1.1",
+    "yarnhook": "^0.5.1"
+  },
+  "dependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^16.0.0",
+    "concurrently": "^6.2.0",
+    "dotenv-cli": "^4.0.0",
+    "expo-constants": "^11.0.1",
+    "typescript": "~4.3.5"
+  },
+  "husky": {
+    "pre-commit": "lint-staged",
+    "post-merge": "yarnhook",
+    "post-checkout": "yarnhook",
+    "post-rewrite": "yarnhook"
+  }
+}
